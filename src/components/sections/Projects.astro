@@ -1,0 +1,120 @@
+---
+const projects = [
+  {
+    name: 'IWARAI',
+    tags: ['Smart IoT Monitoring Platform', 'Currently In Development'],
+    img: '/images/Iwarai_Backgrodund.svg',
+    alt: 'IWARAI smart IoT monitoring app shown on a phone',
+    logo: '/images/iwarai.svg',
+    pill: 'lg:w-[287px]', // desktop pill width
+    pos: 'object-center', // which part of the image stays visible
+  },
+  {
+    name: 'ADIBID Stock Market Advisor',
+    tags: ['AI-Powered Stock Market Insights', 'Mobile App · Currently In Development'],
+    img: '/images/P_Adibid_Global.svg',
+    alt: 'ADIBID AI stock market advisor mobile app',
+    logo: null,
+    pill: 'lg:w-[386px]',
+    pos: 'object-[55%_center]',
+  },
+];
+---
+
+<section id="projects" class="bg-white px-4 py-[60px] md:px-8 lg:px-[61px] lg:py-[100px]">
+  <div class="mx-auto max-w-[1318px]">
+    <!-- Top: heading left, paragraph right (desktop) -->
+    <div class="lg:flex lg:items-center lg:justify-between lg:gap-10">
+      <div>
+        <span
+          data-reveal
+          class="inline-flex items-center rounded-full border border-[#D7D9E0] px-4 py-2 text-xs leading-4 font-medium text-[#3D414F]"
+        >
+          Our Work
+        </span>
+
+        <h2
+          data-reveal
+          style="--reveal-delay: 100ms;"
+          class="mt-5 text-[45px] leading-[1.375] lg:text-[60px]"
+        >
+          <span class="font-medium text-[#202228]">What We're</span>
+          <br />
+          <span class="font-normal text-[#6D768A]">Building</span>
+        </h2>
+      </div>
+
+      <p
+        data-reveal
+        style="--reveal-delay: 200ms;"
+        class="mt-6 text-base leading-[1.5] font-light text-[#6D768A] lg:mt-0 lg:max-w-[400px] lg:text-[20px]"
+      >
+        We are currently building AI chatbots, automation tools and custom software for growing
+        businesses. More real results coming soon.
+      </p>
+    </div>
+
+    <!-- Project cards: stacked on mobile, side by side (500 + 780) on desktop -->
+    <div class="mt-[50px] grid gap-5 lg:mt-[60px] lg:grid-cols-[500fr_780fr] lg:gap-[37px]">
+      {
+        projects.map((p, i) => (
+          <article
+            data-reveal
+            style={`--reveal-delay: ${i * 150}ms;`}
+            class="group relative h-[514px] overflow-hidden rounded-[12px] bg-ink"
+          >
+            <h3 class="sr-only">{p.name}</h3>
+
+            <!-- Background image (zooms a little on hover) -->
+            <img
+              src={p.img}
+              alt={p.alt}
+              loading="lazy"
+              decoding="async"
+              class:list={[
+                'absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]',
+                p.pos,
+              ]}
+            />
+
+            <!-- Glass pills -->
+            <ul
+              class:list={[
+                'absolute top-[15px] right-4 left-4 flex flex-col gap-[14px] lg:right-auto',
+                p.pill,
+              ]}
+            >
+              {p.tags.map((tag) => (
+                <li class="pill flex h-[37px] items-center justify-center rounded-full px-4 text-center text-base whitespace-nowrap text-white">
+                  {tag}
+                </li>
+              ))}
+            </ul>
+
+            <!-- Project logo at the bottom (IWARAI only) -->
+            {p.logo && (
+              <img
+                src={p.logo}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                class="absolute bottom-[28px] left-1/2 w-[170px] -translate-x-1/2 lg:bottom-[52px]"
+              />
+            )}
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Liquid-glass pill */
+  .pill {
+    background: linear-gradient(90deg, rgba(20, 20, 22, 0.45), rgba(60, 60, 64, 0.25));
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px) saturate(140%);
+    -webkit-backdrop-filter: blur(12px) saturate(140%);
+  }
+</style>

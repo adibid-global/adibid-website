@@ -1,0 +1,112 @@
+---
+// Questions and answers: change the text here
+const faqs = [
+  {
+    q: 'What services does ADIBID offer?',
+    a: 'We build AI chatbots, business automation, custom software, web and mobile apps, IoT solutions, and provide cloud and IT support.',
+  },
+  {
+    q: 'What industries do you work with?',
+    a: 'We work with retail, finance, healthcare, education, hospitality, logistics and more. If your business has repetitive tasks or lots of customer questions, AI can help.',
+  },
+  {
+    q: 'Can you connect AI to our existing tools?',
+    a: 'Yes. We connect AI to the tools you already use, such as WhatsApp, Gmail, Google Sheets, Slack, CRMs and your own systems, so you don’t need to start from scratch.',
+  },
+  {
+    q: 'How long does a project take?',
+    a: 'A simple chatbot or automation can be ready in 1–3 weeks. Custom software and apps usually take 1–3 months, depending on the features you need.',
+  },
+  {
+    q: 'How do we start working together?',
+    a: 'Contact us and tell us about your business. We’ll book a free call, understand your needs, and send you a clear plan and quote.',
+  },
+];
+
+// Helps Google understand this is an FAQ (SEO)
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<section id="faq" class="faq bg-white px-4 py-20 md:px-8 lg:px-[61px] lg:py-[100px]">
+  <div class="mx-auto max-w-[1318px]">
+    <!-- Badge (mobile only, like your Figma) -->
+    <span
+      data-reveal
+      class="inline-flex items-center rounded-full border border-[#D7D9E0] px-4 py-2 text-xs leading-4 font-medium text-[#3D414F] lg:hidden"
+    >
+      FAQ
+    </span>
+
+    <h2
+      data-reveal
+      style="--reveal-delay: 100ms;"
+      class="mt-4 text-[45px] leading-[1.35] lg:mt-0 lg:text-[60px]"
+    >
+      <span class="font-medium text-[#202228]">Everything</span>
+      <br />
+      <span class="font-medium text-[#8B93A5] lg:font-normal lg:text-[#6D768A]">
+        You Need To Know
+      </span>
+    </h2>
+
+    <!-- Questions: full width on mobile, right side (666px) on desktop -->
+    <div class="mt-[52px] flex flex-col gap-12 lg:mt-[35px] lg:ml-auto lg:w-[666px] lg:gap-[46px]">
+      {
+        faqs.map((f, i) => (
+          <details
+            name="faq"
+            open={i === 0}
+            data-reveal
+            style={`--reveal-delay: ${150 + i * 80}ms;`}
+            class="faq-item group"
+          >
+            <summary class="flex cursor-pointer list-none items-start justify-between gap-4 lg:gap-6 [&::-webkit-details-marker]:hidden">
+              <h3 class="text-[26px] leading-[1.45] font-normal text-[#202228] lg:text-[28px] lg:leading-[1.5]">
+                {f.q}
+              </h3>
+
+              <!-- Plus / minus circle -->
+              <span class="-mt-2 grid size-[33px] shrink-0 place-items-center rounded-full border border-[#D7D9E0] text-ink transition-colors duration-300 group-hover:border-ink">
+                <span class="relative block size-[14px]">
+                  <span class="absolute top-1/2 left-0 h-[2px] w-full -translate-y-1/2 rounded-full bg-current" />
+                  <span class="absolute top-0 left-1/2 h-full w-[2px] -translate-x-1/2 rounded-full bg-current transition-transform duration-300 group-open:scale-y-0" />
+                </span>
+              </span>
+            </summary>
+
+            <p class="mt-5 pr-10 text-base leading-[1.45] font-light text-[#6D768A] lg:mt-3 lg:text-[18px] lg:leading-[1.5]">
+              {f.a}
+            </p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</section>
+
+<style>
+  /* Smooth open/close (Chrome & Edge; other browsers open instantly) */
+  .faq {
+    interpolate-size: allow-keywords;
+  }
+  .faq-item::details-content {
+    block-size: 0;
+    overflow: hidden;
+    transition:
+      block-size 0.35s ease,
+      content-visibility 0.35s allow-discrete;
+  }
+  .faq-item[open]::details-content {
+    block-size: auto;
+  }
+</style>
