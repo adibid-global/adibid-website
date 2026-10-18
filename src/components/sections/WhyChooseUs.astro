@@ -1,0 +1,179 @@
+---
+import { Sparkle, Headset, ShieldCheck } from '@lucide/astro';
+
+// Card content. To break a title onto 2 lines, split it into 2 parts.
+// br: 'hidden lg:inline' = break on desktop only, '' = break on all screens
+const cards = [
+  {
+    icon: Sparkle,
+    title: ['Real-World AI Experience'],
+    br: '',
+    text: 'We build practical AI solutions that solve real business problems, not just impressive demos.',
+  },
+  {
+    icon: null, // custom "dots" icon (drawn below)
+    title: ['Custom & Scalable Solutions'],
+    br: '',
+    text: 'Every system is designed around your business, ready to grow as your company grows.',
+  },
+  {
+    icon: Headset,
+    title: ['End-to-End', 'Support'],
+    br: 'hidden lg:inline',
+    text: 'From planning to launch and beyond, we guide and support you at every step.',
+  },
+  {
+    icon: ShieldCheck,
+    title: ['Secure &', 'Reliable'],
+    br: '',
+    text: 'Your data stays private and protected, with systems built to run smoothly every day.',
+  },
+];
+---
+
+<section
+  id="why-us"
+  class="why-bg px-4 py-[60px] text-white md:px-8 lg:px-[61px] lg:py-[100px]"
+>
+  <div class="mx-auto max-w-[1318px]">
+    <!-- Top: heading left, paragraph right (desktop) -->
+    <div class="lg:flex lg:items-end lg:justify-between lg:gap-10">
+      <div>
+        <span
+          data-reveal
+          class="inline-flex items-center rounded-full border border-white/30 bg-white/10 px-[21px] py-[9px] text-xs leading-4 font-medium text-white backdrop-blur-md"
+        >
+          Why Choose ADIBID?
+        </span>
+
+        <h2
+          data-reveal
+          style="--reveal-delay: 100ms;"
+          class="mt-2 text-[36px] leading-[1.5] lg:mt-[10px] lg:text-[60px] lg:leading-[1.35]"
+        >
+          <span class="font-medium text-white">
+            Smart AI solutions{' '}<br class="hidden lg:inline" />built for
+          </span>{' '}
+          <span class="font-normal text-[#ABB0BF]">
+            real{' '}<br class="hidden lg:inline" />business growth.
+          </span>
+        </h2>
+      </div>
+
+      <p
+        data-reveal
+        style="--reveal-delay: 200ms;"
+        class="mt-6 text-base leading-[1.5] font-light text-silver lg:mt-0 lg:mb-1 lg:max-w-[360px] lg:text-[20px]"
+      >
+        Our expert team builds smart, secure, and practical AI solutions while delivering
+        measurable results to every business we serve.
+      </p>
+    </div>
+
+    <!-- Cards: 1 column on mobile, 2 on tablet, 4 on desktop. Gap 37px -->
+    <div class="mt-[50px] grid gap-[37px] md:grid-cols-2 lg:mt-[68px] xl:grid-cols-4">
+      {
+        cards.map((card, i) => {
+          const Icon = card.icon;
+          return (
+            <article
+              data-reveal
+              style={`--reveal-delay: ${i * 120}ms;`}
+              class="glass-card relative flex flex-col justify-between gap-[159px] rounded-[12px] bg-white/10 px-[29px] py-[41px] backdrop-blur-[20px] xl:h-[475px] xl:gap-0 xl:px-[26px] xl:py-[30px]"
+            >
+              <!-- White icon circle -->
+              <div class="grid size-[68px] shrink-0 place-items-center rounded-full bg-white">
+                {Icon ? (
+                  <Icon size={36} stroke-width={2} color="#0a0a0a" />
+                ) : (
+                  <svg
+                    width="36"
+                    height="36"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#0a0a0a"
+                    stroke-width="2"
+                    aria-hidden="true"
+                  >
+                    <circle cx="12" cy="5.5" r="2" />
+                    <circle cx="8.5" cy="11.5" r="2" />
+                    <circle cx="15.5" cy="11.5" r="2" />
+                    <circle cx="5" cy="17.5" r="2" />
+                    <circle cx="12" cy="17.5" r="2" />
+                    <circle cx="19" cy="17.5" r="2" />
+                  </svg>
+                )}
+              </div>
+
+              <!-- Title + text -->
+              <div>
+                <h3 class="text-[25px] leading-[1.36] font-normal text-white">
+                  {card.title[0]}
+                  {card.title[1] && (
+                    <Fragment>
+                      {' '}
+                      <br class={card.br} />
+                      {card.title[1]}
+                    </Fragment>
+                  )}
+                </h3>
+                <p class="mt-[14px] text-[20px] leading-[1.5] font-light text-[#ABB0BF]">
+                  {card.text}
+                </p>
+              </div>
+            </article>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Dark grey background with soft vertical light bands */
+  .why-bg {
+    --bands: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.05) 0% 5.5%,
+      rgba(255, 255, 255, 0.02) 5.5% 16%,
+      rgba(0, 0, 0, 0.05) 16% 34%,
+      rgba(0, 0, 0, 0.12) 34% 42%,
+      rgba(0, 0, 0, 0.18) 42% 62%,
+      rgba(255, 255, 255, 0.03) 62% 71%,
+      rgba(255, 255, 255, 0.06) 71% 84%,
+      rgba(255, 255, 255, 0.09) 84% 100%
+    );
+    background-color: #3a3b3d;
+    background-image: var(--bands), linear-gradient(180deg, #333436 0%, #4a4b4d 100%);
+  }
+
+  /* Mobile: gets lighter towards the bottom (like your Figma) */
+  @media (max-width: 767px) {
+    .why-bg {
+      background-image:
+        var(--bands),
+        linear-gradient(180deg, #3a3b3d 0%, #5a5b5d 40%, #6a6a6b 100%);
+    }
+  }
+
+  /* Glass card stroke: 1px white gradient line, inside */
+  .glass-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0.35) 100%
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+</style>

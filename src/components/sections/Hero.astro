@@ -1,0 +1,65 @@
+---
+import { ArrowUpRight } from '@lucide/astro';
+---
+
+<section
+  class="relative isolate flex min-h-[100svh] flex-col overflow-hidden bg-ink bg-cover bg-center text-white"
+  style="background-image: url('/images/Back_img.png');"
+>
+  <!-- Black layer, 20% opacity, over the whole background -->
+  <div class="absolute inset-0 -z-10 bg-black/20" aria-hidden="true"></div>
+
+  <div
+    class="mx-auto flex w-full max-w-[1440px] flex-1 flex-col justify-end px-4 pt-32 pb-9 md:justify-start md:px-8 md:pt-[154px] md:pb-20 lg:px-[61px]"
+  >
+    <!-- Top left: badge + big heading -->
+    <div class="flex flex-col items-start gap-6 md:gap-3">
+      <!-- Liquid glass badge -->
+      <span
+        data-reveal
+           class="inline-flex items-center rounded-full border border-white/40 bg-gradient-to-b from-white/25 to-white/5 px-4 py-2 text-xs font-medium text-white shadow-[inset_0_1px_1px_rgba(255,255,255,0.45),inset_0_-1px_1px_rgba(255,255,255,0.1),0_4px_16px_rgba(0,0,0,0.15)] backdrop-blur-md"
+      >
+        Your AI Journey Starts Here
+      </span>
+
+      <h1 data-reveal style="--reveal-delay: 120ms;"
+        class="text-[45px] leading-[1.25] font-semibold uppercase md:text-[56px] lg:text-[64px] xl:text-[80px]"
+      >
+        Innovative <br class="hidden lg:inline" />
+        Technology {' '}
+        <span class="font-normal text-silver">
+          Solutions <br class="hidden lg:inline" />
+          for the future
+        </span>
+      </h1>
+    </div>
+
+    <!-- Bottom right: paragraph + buttons -->
+    <div
+      data-reveal
+           style="--reveal-delay: 240ms;"
+           class="mt-6 flex flex-col gap-8 md:mt-16 md:ml-auto md:w-[435px] md:gap-5 lg:mt-32 xl:mt-[253px]"
+    >
+      <p class="text-base leading-6 font-light md:text-2xl md:leading-[1.5]">
+        We build intelligent digital solutions that help businesses scale, innovate, and stay
+        ahead in a rapidly changing world.
+      </p>
+
+      <div class="flex flex-col gap-3 md:flex-row md:gap-4">
+        <a
+          href="/contact"
+          class="inline-flex h-12 items-center justify-center rounded-[38px] bg-white px-8 text-[18px] text-ink transition hover:bg-white/90"
+        >
+          Get an Idea
+        </a>
+        <a
+          href="/contact"
+          class="inline-flex h-12 items-center justify-center gap-2 rounded-[38px] border border-white px-6 text-[18px] font-light text-white transition hover:bg-white/10"
+        >
+          Contact Us
+          <ArrowUpRight size={18} stroke-width={1.5} />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

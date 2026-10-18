@@ -1,0 +1,146 @@
+---
+import { ArrowUpRight, Menu, X } from '@lucide/astro';
+import { NAV } from '../../data/site';
+
+interface Props {
+  overlay?: boolean; // true = transparent over the hero image at the top
+}
+const { overlay = false } = Astro.props;
+
+// Find the current page so its menu link shows as active
+const clean = (p: string) => p.replace(/\/$/, '') || '/';
+const current = clean(Astro.url.pathname);
+---
+
+<header
+  data-header
+  data-scrolled="false"
+  class:list={[
+    'group inset-x-0 top-0 z-50 text-white transition-[background-color,box-shadow,backdrop-filter] duration-300',
+    // Before scrolling
+    overlay ? 'fixed' : 'sticky bg-ink',
+    // After scrolling: liquid glass bar
+    'data-[scrolled=true]:bg-black/40 data-[scrolled=true]:backdrop-blur-xl data-[scrolled=true]:backdrop-saturate-150',
+    'data-[scrolled=true]:shadow-[inset_0_-1px_0_rgba(255,255,255,0.15),0_8px_30px_rgba(0,0,0,0.25)]',
+  ]}
+>
+  <div
+    class="mx-auto flex max-w-[1440px] items-center justify-between px-4 pt-[29px] pb-3 transition-[padding] duration-300 group-data-[scrolled=true]:pt-3 md:px-8 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:px-[61px] lg:pt-[35px] lg:pb-4 lg:group-data-[scrolled=true]:pt-4"
+  >
+    <!-- Logo -->
+    <a href="/" aria-label="ADIBID home" class="shrink-0">
+      <img
+        src="/images/adibid_logo.svg"
+        alt="ADIBID"
+        width="139"
+        height="32"
+        class="h-[25px] w-auto lg:h-8"
+      />
+    </a>
+
+    <!-- Desktop menu -->
+    <nav class="hidden items-center gap-[46px] lg:flex" aria-label="Main menu">
+      {
+        NAV.map((item) => {
+          const active = clean(item.href) === current;
+          return (
+            <a
+              href={item.href}
+              aria-current={active ? 'page' : undefined}
+              class:list={[
+                'transition-opacity hover:opacity-75',
+                active ? 'text-[20px] font-semibold' : 'text-[18px] font-light',
+              ]}
+            >
+              {item.label}
+            </a>
+          );
+        })
+      }
+    </nav>
+
+    <!-- Desktop button + mobile menu button -->
+    <div class="flex items-center justify-end">
+      <a
+        href="/contact"
+        class="hidden h-[46px] items-center gap-2 rounded-[38px] bg-white px-5 text-[18px] text-ink transition hover:bg-white/90 lg:inline-flex"
+      >
+        Get an Idea
+        <ArrowUpRight size={20} stroke-width={2.5} />
+      </a>
+
+      <button
+        type="button"
+        class="p-1 lg:hidden"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        data-menu-btn
+      >
+        <span data-icon-open><Menu size={28} stroke-width={2} /></span>
+        <span data-icon-close class="hidden"><X size={28} stroke-width={2} /></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu panel (glass) -->
+  <div id="mobile-menu" class="hidden px-4 pb-4 md:px-8 lg:hidden" data-menu>
+    <nav
+      class="flex flex-col rounded-3xl border border-white/20 bg-black/60 p-3 backdrop-blur-xl"
+      aria-label="Mobile menu"
+    >
+      {
+        NAV.map((item) => (
+          <a
+            href={item.href}
+            data-menu-link
+            class:list={[
+              'rounded-2xl px-4 py-3 text-[18px] hover:bg-white/10',
+              clean(item.href) === current ? 'font-semibold' : 'font-light',
+            ]}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <a
+        href="/contact"
+        class="mt-2 inline-flex h-12 items-center justify-center gap-2 rounded-[38px] bg-white text-[18px] text-ink"
+      >
+        Get an Idea
+        <ArrowUpRight size={20} stroke-width={2.5} />
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector('[data-header]');
+  const btn = document.querySelector('[data-menu-btn]');
+  const panel = document.querySelector('[data-menu]');
+
+  // 1. Glass effect: turn on after scrolling 10px, off at the very top
+  const onScroll = () => {
+    header?.setAttribute('data-scrolled', String(window.scrollY > 10));
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // 2. Open / close the mobile menu
+  const setMenu = (open: boolean) => {
+    btn?.setAttribute('aria-expanded', String(open));
+    btn?.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    panel?.classList.toggle('hidden', !open);
+    btn?.querySelector('[data-icon-open]')?.classList.toggle('hidden', open);
+    btn?.querySelector('[data-icon-close]')?.classList.toggle('hidden', !open);
+  };
+
+  btn?.addEventListener('click', () => {
+    setMenu(btn.getAttribute('aria-expanded') !== 'true');
+  });
+
+  // Close the menu after tapping a link (for example "Services")
+  document.querySelectorAll('[data-menu-link]').forEach((link) => {
+    link.addEventListener('click', () => setMenu(false));
+  });
+</script>

@@ -1,0 +1,128 @@
+---
+import { ArrowLeft, ArrowRight } from '@lucide/astro';
+
+// Team members: add more here and the slider updates automatically
+const team = [
+  { name: 'Arron', role: 'CEO', img: '/images/team/ceo.svg' },
+  { name: 'Imesha', role: 'Director of User Experience', img: '/images/team/director-ux.svg' },
+  { name: 'Chamal', role: 'Lead AI Engineer', img: '/images/team/lead-ai-engineer.svg' },
+];
+---
+
+<section
+  id="team"
+  class="bg-white px-4 pt-[60px] pb-[60px] md:px-8 lg:bg-mist lg:px-[61px] lg:py-[100px]"
+>
+  <div class="mx-auto max-w-[1318px]" data-slider>
+    <!-- Top: heading left, paragraph right (desktop) -->
+    <div class="lg:flex lg:items-center lg:justify-between lg:gap-10">
+      <div>
+        <span
+          data-reveal
+          class="inline-flex items-center rounded-full border border-[#D7D9E0] bg-white px-4 py-2 text-xs leading-4 font-medium text-[#3D414F]"
+        >
+          Our Team
+        </span>
+
+        <h2
+          data-reveal
+          style="--reveal-delay: 100ms;"
+          class="mt-4 text-[45px] leading-[1.35] lg:mt-5 lg:text-[60px] lg:leading-[1.375]"
+        >
+          <span class="font-medium text-[#202228]">The Minds Behind</span>
+          <br />
+          <span class="font-normal text-[#6D768A]">Every Smart Solution</span>
+        </h2>
+      </div>
+
+      <p
+        data-reveal
+        style="--reveal-delay: 200ms;"
+        class="mt-[10px] text-[20px] leading-[1.5] font-light text-[#6D768A] lg:mt-0 lg:max-w-[360px]"
+      >
+        Our expert team builds smart, secure, and practical AI solutions while delivering
+        measurable results to every business we serve.
+      </p>
+    </div>
+
+    <!-- Slider: 1 card on mobile, 2 on tablet, 3 on desktop -->
+    <div data-reveal style="--reveal-delay: 250ms;" class="mt-[50px] lg:mt-[60px]">
+      <div
+        data-track
+        role="region"
+        aria-label="Team members"
+        tabindex="0"
+        class="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth [scrollbar-width:none] focus:outline-none [&::-webkit-scrollbar]:hidden"
+      >
+        {
+          team.map((m) => (
+            <article class="group relative h-[493px] w-full shrink-0 snap-start overflow-hidden rounded-[4px] bg-ink md:w-[calc((100%-20px)/2)] lg:w-[calc((100%-40px)/3)]">
+              <img
+                src={m.img}
+                alt={`${m.name}, ${m.role} at ADIBID`}
+                width="426"
+                height="493"
+                loading="lazy"
+                decoding="async"
+                class="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+              />
+              <!-- Black fade at the bottom -->
+              <div class="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-black from-15% to-transparent" />
+
+              <div class="absolute inset-x-0 bottom-0 p-10 text-white">
+                <h3 class="text-[36px] leading-[1.1] font-normal">{m.name}</h3>
+                <p class="text-[18px] leading-[1.4] font-normal">{m.role}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Arrow buttons -->
+    <div class="mt-[46px] flex justify-center gap-2 lg:mt-[70px]">
+      <button
+        type="button"
+        data-prev
+        aria-label="Previous team member"
+        class="grid size-14 place-items-center rounded-[4px] bg-[#363944] text-white transition-colors hover:bg-ink"
+      >
+        <ArrowLeft size={24} stroke-width={1.5} />
+      </button>
+      <button
+        type="button"
+        data-next
+        aria-label="Next team member"
+        class="grid size-14 place-items-center rounded-[4px] bg-[#363944] text-white transition-colors hover:bg-ink"
+      >
+        <ArrowRight size={24} stroke-width={1.5} />
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Slider: arrows move one card. At the end it goes back to the start.
+  document.querySelectorAll<HTMLElement>('[data-slider]').forEach((slider) => {
+    const track = slider.querySelector<HTMLElement>('[data-track]')!;
+    const prev = slider.querySelector<HTMLButtonElement>('[data-prev]')!;
+    const next = slider.querySelector<HTMLButtonElement>('[data-next]')!;
+
+    const step = () => {
+      const card = track.firstElementChild as HTMLElement;
+      const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      return card.getBoundingClientRect().width + gap;
+    };
+
+    const go = (dir: 1 | -1) => {
+      const max = track.scrollWidth - track.clientWidth;
+      if (max <= 2) return; // all cards already visible
+      if (dir === 1 && track.scrollLeft >= max - 2) track.scrollTo({ left: 0 });
+      else if (dir === -1 && track.scrollLeft <= 2) track.scrollTo({ left: max });
+      else track.scrollBy({ left: dir * step() });
+    };
+
+    prev.addEventListener('click', () => go(-1));
+    next.addEventListener('click', () => go(1));
+  });
+</script>

@@ -1,0 +1,149 @@
+---
+// Third section of the Home page: services bento grid
+
+type Icon = {
+  src: string; // file name in public/images/icons/
+  alt: string;
+  x: number; // left position, % of the icon group width
+  y: number; // top position, % of the icon group height
+  w: number; // icon width, % of the icon group width
+};
+
+type Card = {
+  title: string;
+  text: string;
+  ratio: string; // shape of the icon group (width / height)
+  desktop: string; // where the icon group sits on desktop
+  wide?: boolean; // true = full-width card
+  icons: Icon[];
+};
+
+const cards: Card[] = [
+  {
+    title: 'AI Chatbots That Never Sleep',
+    text: 'Instant answers for customers, 24/7.',
+    ratio: '424 / 347',
+    desktop: 'lg:right-[18px] lg:bottom-[12px] lg:w-[305px]',
+    icons: [
+      { src: 'messanger.svg', alt: 'Messenger', x: 20, y: 0.3, w: 21.7 },
+      { src: 'chatgpt.svg', alt: 'ChatGPT', x: 70.3, y: 6, w: 23.1 },
+      { src: 'claude.svg', alt: 'Claude', x: 40.1, y: 34, w: 23.1 },
+      { src: 'Telegram.svg', alt: 'Telegram', x: 0, y: 45.5, w: 23.1 },
+      { src: 'gemini.svg', alt: 'Gemini', x: 76.4, y: 56.8, w: 23.6 },
+      { src: 'whatsapp.svg', alt: 'WhatsApp', x: 36.6, y: 72.3, w: 23.1 },
+    ],
+  },
+  {
+    title: 'Automate Work Your Team Hates',
+    text: 'Save hours on repetitive tasks.',
+    ratio: '402 / 360',
+    desktop: 'lg:right-[17px] lg:bottom-[23px] lg:w-[289px]',
+    icons: [
+      { src: 'Mail.svg', alt: 'Gmail', x: 25.1, y: 0.6, w: 22.4 },
+      { src: 'Excell.svg', alt: 'Excel', x: 76.6, y: 5.6, w: 22.4 },
+      { src: 'drive.svg', alt: 'Google Drive', x: 0, y: 40.8, w: 22.4 },
+      { src: 'n8n.svg', alt: 'n8n', x: 39.6, y: 35.6, w: 36.3 },
+      { src: 'sheet.svg', alt: 'Google Sheets', x: 30.8, y: 78, w: 16.4 },
+      { src: 'Slack.svg', alt: 'Slack', x: 77.1, y: 72, w: 22.9 },
+    ],
+  },
+  {
+    title: 'Custom Software Built For You',
+    text: 'Systems designed around your business.',
+    ratio: '434 / 295',
+    desktop: 'lg:right-[15px] lg:bottom-[9px] lg:w-[312px]',
+    wide: true,
+    icons: [
+      { src: 'React.svg', alt: 'React', x: 26, y: 2.4, w: 22.1 },
+      { src: 'node.svg', alt: 'Node.js', x: 65.9, y: 0, w: 19.8 },
+      { src: 'flutter.svg', alt: 'Flutter', x: 0, y: 44, w: 21.7 },
+      { src: 'aws.svg', alt: 'AWS', x: 50.2, y: 39, w: 23 },
+      { src: 'python.svg', alt: 'Python', x: 29, y: 66.8, w: 22.1 },
+      { src: 'Firebase.svg', alt: 'Firebase', x: 77.9, y: 60.3, w: 22.1 },
+    ],
+  },
+];
+---
+
+<section id="services" class="bg-white px-4 py-[60px] md:px-8 lg:px-[61px] lg:py-[100px]">
+  <div class="mx-auto max-w-[1318px]">
+    <!-- Badge -->
+    <span
+      data-reveal
+           class="inline-flex items-center rounded-full border border-[#D7D9E0] bg-white px-4 py-2 text-xs font-medium text-[#3D414F]"
+    >
+      Who we are
+    </span>
+
+    <!-- Heading + paragraph -->
+    <div
+      class="mt-4 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-10"
+    >
+      <h2 data-reveal style="--reveal-delay: 100ms;"
+        class="text-[45px] leading-[1.25] font-normal lg:text-[60px] lg:leading-[1.375]"
+      >
+        <span class="font-medium text-[#202228]">
+          We build <br class="lg:hidden" />real-world AI
+        </span>{' '}
+        <br class="hidden lg:inline" />
+        <span class="text-[#6D768A] lg:font-medium lg:text-[#202228]">solutions to help</span>{' '}
+        <span class="text-[#6D768A] lg:text-[#8B93A5]">
+          businesses{' '}<br class="hidden lg:inline" />grow faster and smarter.
+        </span>
+      </h2>
+
+      <p
+        data-reveal
+           style="--reveal-delay: 200ms;"
+           class="text-base leading-[1.5] font-light text-[#6D768A] lg:mb-7 lg:max-w-[400px] lg:shrink-0 lg:text-[20px]"
+      >
+        We build intelligent digital solutions that help businesses scale,
+      </p>
+    </div>
+
+    <!-- Bento cards -->
+    <div class="mt-[50px] grid gap-5 lg:grid-cols-2">
+      {
+        cards.map((card, i) => (
+          <article
+            data-reveal
+            style={`--reveal-delay: ${i * 120}ms;`}
+            class:list={[
+              'relative flex flex-col overflow-hidden rounded-[8px] border border-[#D7D9E0] pb-[10px] lg:pb-0',
+              card.wide ? 'lg:col-span-2 lg:h-[300px]' : 'lg:h-[440px]',
+            ]}
+          >
+            <div class="px-12 pt-12">
+              <h3 class="text-[28px] leading-[1.5] text-[#363944] lg:leading-[1.3]">
+                {card.title}
+              </h3>
+              <p class="mt-3 text-[20px] leading-[1.5] text-[#8B93A5] lg:mt-2">{card.text}</p>
+            </div>
+
+            <!-- Icon group: centered under the text on mobile, bottom-right on desktop -->
+            <div
+              class:list={[
+                'relative mx-auto mt-5 w-[270px] max-w-[calc(100%-32px)] lg:absolute lg:mx-0 lg:mt-0',
+                card.desktop,
+              ]}
+              style={`aspect-ratio: ${card.ratio};`}
+            >
+              {card.icons.map((icon, j) => (
+                <img
+                  data-reveal="zoom"
+                  src={`/images/icons/${icon.src}`}
+                  alt={icon.alt}
+                  loading="lazy"
+                  decoding="async"
+                  class="absolute h-auto hover:-translate-y-1"
+                  style={`left: ${icon.x}%; top: ${icon.y}%; width: ${icon.w}%; --reveal-delay: ${300 + i * 120 + j * 80}ms;`}
+                />
+              ))}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+    
+  </div>
+</section>
