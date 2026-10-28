@@ -1,0 +1,423 @@
+---
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "@lucide/astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const disciplines = [
+  {
+    name: "Arron",
+    role: "Leadership & Strategy",
+    image: "/images/team/ceo.svg",
+    alt: "Arron, CEO of ADIBID",
+  },
+  {
+    name: "Imesha",
+    role: "Design & User Experience",
+    image: "/images/team/director-ux.svg",
+    alt: "Imesha, Director of User Experience",
+  },
+  {
+    name: "Chamal",
+    role: "Artificial Intelligence",
+    image: "/images/team/lead-ai-engineer.svg",
+    alt: "Chamal, Lead AI Engineer",
+  },
+  {
+    name: "Engineering & Operational Solutions",
+    role: "Consultant",
+    image:
+      "/images/team/consultant%20%E2%80%93%20engineering%20&%20operational%20solutions.svg",
+    alt: "Engineering and operational solutions consultant profile",
+  },
+  {
+    name: "DRC",
+    image: "/images/team/drc.svg",
+    alt: "DRC profile image",
+  },
+];
+
+const steps = [
+  {
+    number: "01",
+    title: "Understanding the Business",
+    description:
+      "We begin by examining how your business operates, where time is lost, and which everyday tasks create unnecessary complexity.",
+  },
+  {
+    number: "02",
+    title: "Identifying Opportunities",
+    description:
+      "We identify repetitive tasks, disconnected systems, and workflow bottlenecks to uncover meaningful improvements.",
+  },
+  {
+    number: "03",
+    title: "Building Smarter Solutions",
+    description:
+      "We design practical improvements using automation, integrations, dashboards, custom software, and AI where they make sense.",
+  },
+  {
+    number: "04",
+    title: "Improving the Way Business Works",
+    description:
+      "We help businesses implement better workflows and refine their processes as their needs evolve, with a focus on practical results.",
+  },
+];
+---
+
+<BaseLayout
+  title="About Us | ADIBID Global"
+  description="Meet ADIBID Global: a multidisciplinary team combining AI, design, and technology to solve real business challenges."
+  lightHeader
+>
+  <section class="px-4 pt-12 pb-12 md:px-8 md:pt-16 lg:px-[61px] lg:pt-[72px] lg:pb-[76px]">
+    <div class="mx-auto max-w-[1318px]">
+      <div class="grid gap-6 lg:grid-cols-[1.05fr_0.65fr] lg:items-end lg:gap-12">
+        <div>
+          <span
+            data-reveal
+            class="inline-flex items-center gap-2 rounded-full border border-line px-3 py-1.5 text-xs font-medium text-[#555b68]"
+          >
+            <span class="size-1.5 rounded-full bg-brand"></span>
+            About ADIBID
+          </span>
+          <h1
+            data-reveal
+            style="--reveal-delay: 100ms;"
+            class="mt-4 max-w-[750px] text-[38px] leading-[1.14] font-medium tracking-[-0.045em] text-[#202228] md:text-[46px] lg:text-[64px]"
+          >
+            Everything you need to
+            <span class="block font-normal text-[#7b8190]">
+              build smarter with AI.
+            </span>
+          </h1>
+        </div>
+        <p
+          data-reveal
+          style="--reveal-delay: 180ms;"
+          class="max-w-[450px] text-[15px] leading-7 font-light text-[#646b79] lg:justify-self-end lg:text-base"
+        >
+          ADIBID helps businesses simplify workflows, automate everyday tasks,
+          and build intelligent AI solutions without unnecessary complexity.
+        </p>
+      </div>
+
+      <div
+        data-reveal="zoom"
+        style="--reveal-delay: 220ms;"
+        class="relative mt-8 aspect-[1320/648] overflow-hidden rounded-[2px] bg-[#dfe2e4] md:mt-10 lg:mt-12"
+      >
+        <img
+          src="/images/about_us_background_image.svg"
+          alt="Business professionals collaborating around a table"
+          fetchpriority="high"
+          decoding="async"
+          class="absolute inset-0 h-full w-full object-cover object-center"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="px-4 py-12 md:px-8 md:py-16 lg:px-[61px] lg:py-[88px]">
+    <div class="mx-auto max-w-[1318px]">
+      <div class="grid gap-5 md:grid-cols-[1fr_0.68fr] md:items-end md:gap-12">
+        <div>
+          <p data-reveal class="inline-flex rounded-full border border-line px-3 py-1 text-[10px] font-medium text-[#555b68]">
+            About ADIBID
+          </p>
+          <h2
+            data-reveal
+            style="--reveal-delay: 80ms;"
+            class="mt-2 text-[31px] leading-[1.2] font-medium tracking-[-0.035em] text-[#202228] md:text-[42px] lg:text-[48px]"
+          >
+            Built to make business
+            <span class="block font-normal text-[#7b8190]">
+              smarter with AI.
+            </span>
+          </h2>
+        </div>
+        <p
+          data-reveal
+          style="--reveal-delay: 150ms;"
+          class="max-w-[460px] text-sm leading-6 font-light text-[#646b79] md:justify-self-end md:text-[15px] md:leading-7"
+        >
+          ADIBID was created to help businesses simplify workflows, automate
+          everyday tasks, and unlock new opportunities with AI. We build
+          practical technology solutions that help teams work smarter and grow
+          efficiently.
+        </p>
+      </div>
+
+      <div class="mt-8 grid gap-3 md:mt-10 md:grid-cols-[0.92fr_1.08fr] md:gap-4">
+        <div class="grid gap-3 md:gap-4">
+          <article
+            data-reveal
+            class="flex min-h-[150px] flex-col justify-between rounded-[2px] bg-[#363944] p-5 text-white md:min-h-[185px] md:p-7"
+          >
+            <span aria-hidden="true" class="grid size-8 place-items-center rounded-full border-[4px] border-white/80">
+              <span class="size-2 rounded-full bg-white"></span>
+            </span>
+            <div class="mt-6">
+              <h3 class="text-base font-medium md:text-lg">Our Mission</h3>
+              <p class="mt-1.5 max-w-[440px] text-xs leading-5 font-light text-white/85 md:text-sm md:leading-6">
+                To help businesses simplify operations, connect systems, and
+                improve productivity through practical digital solutions.
+              </p>
+            </div>
+          </article>
+          <article
+            data-reveal
+            style="--reveal-delay: 100ms;"
+            class="flex min-h-[130px] flex-col justify-between rounded-[2px] bg-[#f5f6f8] p-5 md:min-h-[155px] md:p-7"
+          >
+            <span aria-hidden="true" class="grid size-8 place-items-center rounded-full border border-[#d6d8dd] text-[#555b68]">
+              <span class="size-2 rounded-full border border-current"></span>
+            </span>
+            <div class="mt-5">
+              <h3 class="text-sm font-medium text-[#202228] md:text-base">Our Vision</h3>
+              <p class="mt-1 text-xs leading-5 font-light text-[#646b79] md:text-sm">
+                To help businesses operate more intelligently, adapt with
+                confidence, and grow through purposeful technology.
+              </p>
+            </div>
+          </article>
+        </div>
+
+        <article
+          data-reveal
+          style="--reveal-delay: 160ms;"
+          class="group relative min-h-[300px] overflow-hidden rounded-[2px] bg-[#252a2d] md:min-h-0"
+        >
+          <img
+            src="/images/about_us_our%20story_.svg"
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            decoding="async"
+            class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+          />
+          <div class="absolute inset-x-0 bottom-0 p-5 text-white md:p-7">
+            <h3 class="text-xl leading-tight font-medium md:text-2xl">Our Story</h3>
+            <p class="mt-2 max-w-[500px] text-xs leading-5 font-light md:text-sm md:leading-6">
+              We believe businesses shouldn’t work harder because their systems
+              haven’t caught up. ADIBID helps simplify processes and turn
+              everyday operational challenges into smarter ways of working.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#f5f6f8] px-4 py-12 md:px-8 md:py-16 lg:px-[61px] lg:py-[88px]">
+    <div class="mx-auto max-w-[1318px]">
+      <div class="grid gap-5 md:grid-cols-[1fr_0.65fr] md:items-end md:gap-12">
+        <div>
+          <p
+            data-reveal
+            class="text-[11px] font-medium tracking-[0.16em] text-[#858b98] uppercase"
+          >
+            Our people
+          </p>
+          <h2
+            data-reveal
+            style="--reveal-delay: 80ms;"
+            class="mt-2 text-[31px] leading-[1.2] font-medium tracking-[-0.035em] text-[#202228] md:text-[42px] lg:text-[48px]"
+          >
+            Different disciplines.
+            <span class="block font-normal text-[#7b8190]">One objective.</span>
+          </h2>
+        </div>
+        <p
+          data-reveal
+          style="--reveal-delay: 150ms;"
+          class="max-w-[450px] text-sm leading-6 font-light text-[#646b79] md:justify-self-end md:text-[15px] md:leading-7"
+        >
+          We bring together business thinking, research, and technology to
+          understand operational challenges and develop practical solutions that
+          help businesses work smarter.
+        </p>
+      </div>
+
+      <div data-slider class="mt-7 md:mt-9">
+        <div
+          data-track
+          role="region"
+          aria-label="ADIBID team members"
+          tabindex="0"
+          class="flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth [scrollbar-width:none] focus:outline-none [&::-webkit-scrollbar]:hidden md:gap-4"
+        >
+          {disciplines.map((person, index) => (
+            <article
+              data-reveal
+              style={`--reveal-delay: ${index * 80}ms;`}
+              class="group relative h-[300px] w-[78%] shrink-0 snap-start overflow-hidden rounded-[2px] bg-[#d5d7da] sm:w-[48%] lg:h-[400px] lg:w-[calc((100%-48px)/4)]"
+            >
+              <img
+                src={person.image}
+                alt={person.alt}
+                loading="lazy"
+                decoding="async"
+                class="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/5 to-transparent"></div>
+              <div class="absolute inset-x-0 bottom-0 p-4 text-white md:p-5">
+                <h3 class="text-lg leading-tight font-medium tracking-tight md:text-xl">
+                  {person.name}
+                </h3>
+                {person.role && (
+                  <p class="mt-1 text-[10px] leading-snug font-light text-white/80 md:text-xs">
+                    {person.role}
+                  </p>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+        <div class="mt-5 flex gap-1.5">
+          <button
+            type="button"
+            data-prev
+            aria-label="Previous team members"
+            class="grid size-10 place-items-center rounded-[2px] bg-[#363944] text-white transition-colors hover:bg-ink"
+          >
+            <ArrowLeft size={18} stroke-width={1.5} />
+          </button>
+          <button
+            type="button"
+            data-next
+            aria-label="Next team members"
+            class="grid size-10 place-items-center rounded-[2px] bg-[#363944] text-white transition-colors hover:bg-ink"
+          >
+            <ArrowRight size={18} stroke-width={1.5} />
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-4 py-12 md:px-8 md:py-16 lg:px-[61px] lg:py-[88px]">
+    <div class="mx-auto grid max-w-[1318px] gap-10 md:grid-cols-[0.72fr_1fr] md:gap-16 lg:gap-24">
+      <div>
+        <p
+          data-reveal
+          class="inline-flex rounded-full border border-line px-3 py-1 text-[10px] font-medium text-[#555b68]"
+        >
+          Our journey
+        </p>
+        <h2
+          data-reveal
+          style="--reveal-delay: 80ms;"
+          class="mt-3 max-w-[430px] text-[30px] leading-[1.2] font-medium tracking-[-0.025em] text-[#363944] uppercase md:text-[38px] lg:text-[42px]"
+        >
+          From business problems to
+          <span class="font-normal text-[#7b8190]">smarter solutions</span>
+        </h2>
+        <p
+          data-reveal
+          style="--reveal-delay: 150ms;"
+          class="mt-4 max-w-[390px] text-sm leading-6 font-light text-[#646b79] md:text-[15px] md:leading-7"
+        >
+          ADIBID helps businesses identify inefficiencies, simplify everyday
+          operations, and build practical digital solutions that make work
+          easier and more efficient.
+        </p>
+      </div>
+
+      <ol class="relative space-y-0 before:absolute before:top-3 before:bottom-7 before:left-[11px] before:w-px before:bg-[#0a9874]">
+        {steps.map((step, index) => (
+          <li
+            data-reveal
+            style={`--reveal-delay: ${index * 100}ms;`}
+            class="relative grid grid-cols-[24px_1fr] gap-4 pb-7 last:pb-0 md:gap-6 md:pb-9"
+          >
+            <span class="relative z-10 mt-0.5 grid size-[23px] place-items-center rounded-full border-[3px] border-[#252a30] bg-white">
+              <span class="size-2 rounded-full bg-white"></span>
+            </span>
+            <div class="pb-5 md:pb-7">
+              <span class="inline-flex rounded-full border border-[#e1e3e7] bg-[#f7f8f9] px-3 py-1 text-[10px] font-light text-[#6b7280]">
+                Phase {step.number}
+              </span>
+              <h3 class="mt-3 text-sm font-medium tracking-tight text-[#252830] md:text-base">
+                {step.title}
+              </h3>
+              <p class="mt-1.5 max-w-[500px] text-[11px] leading-5 font-light text-[#646b79] md:text-xs md:leading-5">
+                {step.description}
+              </p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="px-4 pb-12 md:px-8 md:pb-16 lg:px-[61px] lg:pb-[88px]">
+    <div
+      data-reveal="zoom"
+      class="relative isolate flex min-h-[320px] flex-col items-center justify-center overflow-hidden bg-[#222629] px-5 py-12 text-center text-white md:min-h-[420px] lg:min-h-[500px]"
+    >
+      <img
+        src="/images/Cta.svg"
+        alt=""
+        aria-hidden="true"
+        loading="lazy"
+        decoding="async"
+        class="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+      />
+      <span aria-hidden="true" class="mb-4 text-4xl leading-none font-semibold text-brand">A</span>
+      <h2 class="max-w-[720px] text-[25px] leading-[1.12] font-medium tracking-[-0.02em] uppercase md:text-[38px] lg:text-[44px]">
+        Let’s make your
+        <span class="block font-normal">business work better.</span>
+      </h2>
+      <p class="mt-3 max-w-[560px] text-xs leading-5 font-light text-white/90 md:text-sm">
+        Show us a process that takes too much time or creates unnecessary work.
+        We’ll help you identify what could be simplified, connected, or automated.
+      </p>
+      <div class="mt-5 flex flex-wrap justify-center gap-2">
+        <a
+          href="/contact"
+          class="inline-flex items-center gap-2 rounded-[2px] bg-white px-4 py-2.5 text-[11px] font-medium text-[#202228] transition hover:bg-brand"
+        >
+          Get a Free Process Review
+          <ArrowUpRight size={14} stroke-width={1.8} />
+        </a>
+        <a
+          href="/#services"
+          class="inline-flex items-center gap-2 rounded-[2px] border border-white/50 bg-black/20 px-4 py-2.5 text-[11px] font-medium text-white transition hover:bg-white/15"
+        >
+          Explore Our Solutions
+          <ArrowRight size={14} stroke-width={1.8} />
+        </a>
+      </div>
+    </div>
+  </section>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-slider]").forEach((slider) => {
+    const track = slider.querySelector<HTMLElement>("[data-track]");
+    const prev = slider.querySelector<HTMLButtonElement>("[data-prev]");
+    const next = slider.querySelector<HTMLButtonElement>("[data-next]");
+    const firstCard = track?.firstElementChild;
+
+    if (!track || !prev || !next || !(firstCard instanceof HTMLElement)) return;
+
+    const getStep = () => {
+      const gap = Number.parseFloat(getComputedStyle(track).columnGap) || 0;
+      return firstCard.getBoundingClientRect().width + gap;
+    };
+
+    const scroll = (direction: -1 | 1) => {
+      const max = track.scrollWidth - track.clientWidth;
+      if (max <= 2) return;
+      if (direction === 1 && track.scrollLeft >= max - 2) {
+        track.scrollTo({ left: 0, behavior: "smooth" });
+      } else if (direction === -1 && track.scrollLeft <= 2) {
+        track.scrollTo({ left: max, behavior: "smooth" });
+      } else {
+        track.scrollBy({ left: direction * getStep(), behavior: "smooth" });
+      }
+    };
+
+    prev.addEventListener("click", () => scroll(-1));
+    next.addEventListener("click", () => scroll(1));
+  });
+</script>
+</BaseLayout>

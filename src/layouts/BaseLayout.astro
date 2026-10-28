@@ -1,16 +1,24 @@
 ---
-import '../styles/global.css';
-import Header from '../components/common/Header.astro';
-import Footer from '../components/common/Footer.astro';
+import "../styles/global.css";
+import Header from "../components/common/Header.astro";
+import Footer from "../components/common/Footer.astro";
 
 interface Props {
   title: string;
   description: string;
   overlayHeader?: boolean; // true = header sits on top of the hero image
+  lightHeader?: boolean;
 }
 
-const { title, description, overlayHeader = false } = Astro.props;
-const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+const {
+  title,
+  description,
+  overlayHeader = false,
+  lightHeader = false,
+} = Astro.props;
+const canonical = Astro.site
+  ? new URL(Astro.url.pathname, Astro.site).href
+  : undefined;
 ---
 
 <!doctype html>
@@ -34,38 +42,32 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : un
     />
   </head>
   <body class="bg-white font-sans text-ink antialiased">
-    <Header overlay={overlayHeader} />
+    <Header overlay={overlayHeader} light={lightHeader} />
     <main>
       <slot />
     </main>
     <Footer />
 
     <script>
-  // Scroll animation: show each [data-reveal] element when it comes on screen
-  const items = document.querySelectorAll('[data-reveal]');
+      // Scroll animation: show each [data-reveal] element when it comes on screen
+      const items = document.querySelectorAll("[data-reveal]");
 
-  if (!('IntersectionObserver' in window)) {
-    items.forEach((el) => el.classList.add('is-visible'));
-  } else {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target); // animate only once
-          }
-        });
-      },
-      { threshold: 0.15, rootMargin: '0px 0px -60px 0px' }
-    );
-    items.forEach((el) => observer.observe(el));
-  }
-</script>
-
-
-
-
-
-
+      if (!("IntersectionObserver" in window)) {
+        items.forEach((el) => el.classList.add("is-visible"));
+      } else {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target); // animate only once
+              }
+            });
+          },
+          { threshold: 0.15, rootMargin: "0px 0px -60px 0px" },
+        );
+        items.forEach((el) => observer.observe(el));
+      }
+    </script>
   </body>
 </html>
