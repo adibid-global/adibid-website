@@ -1,0 +1,69 @@
+---
+import MissionVision from "./MissionVision.astro";
+---
+
+<section class="px-4 py-12 md:px-8 md:py-16 lg:px-[61px] lg:py-[88px]">
+  <div class="mx-auto max-w-[1318px]">
+    <div class="grid gap-5 md:grid-cols-[1fr_0.68fr] md:items-end md:gap-12">
+      <div>
+        <p
+          data-reveal
+          class="inline-flex rounded-full border border-line px-3 py-1 text-[10px] font-medium text-[#555b68]"
+        >
+          About ADIBID
+        </p>
+        <h2
+          data-reveal
+          style="--reveal-delay: 80ms;"
+          class="mt-2 text-[31px] leading-[1.2] font-medium tracking-[-0.035em] text-[#202228] md:text-[42px] lg:text-[48px]"
+        >
+          Built to make business
+          <span class="block font-normal text-[#7b8190]">
+            smarter with AI.
+          </span>
+        </h2>
+      </div>
+      <p
+        data-reveal
+        style="--reveal-delay: 150ms;"
+        class="max-w-[460px] text-sm leading-6 font-light text-[#646b79] md:justify-self-end md:text-[15px] md:leading-7"
+      >
+        ADIBID was created to help businesses simplify workflows, automate
+        everyday tasks, and unlock new opportunities with AI. We build
+        practical technology solutions that help teams work smarter and grow
+        efficiently.
+      </p>
+    </div>
+
+    <div class="mt-8 grid gap-3 md:mt-10 md:grid-cols-[0.92fr_1.08fr] md:gap-4">
+      <slot name="mission-vision">
+        <slot>
+          <MissionVision />
+        </slot>
+      </slot>
+
+      <article
+        data-reveal
+        style="--reveal-delay: 160ms;"
+        class="group relative min-h-[300px] overflow-hidden rounded-[2px] bg-[#252a2d] md:min-h-0"
+      >
+        <img
+          src="/images/about_us_our%20story_.svg"
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          decoding="async"
+          class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+        />
+        <div class="absolute inset-x-0 bottom-0 p-5 text-white md:p-7">
+          <h3 class="text-xl leading-tight font-medium md:text-2xl">Our Story</h3>
+          <p class="mt-2 max-w-[500px] text-xs leading-5 font-light md:text-sm md:leading-6">
+            We believe businesses shouldn’t work harder because their systems
+            haven’t caught up. ADIBID helps simplify processes and turn
+            everyday operational challenges into smarter ways of working.
+          </p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
