@@ -1,0 +1,83 @@
+---
+const steps = [
+  {
+    number: "01",
+    title: "Understanding the Business",
+    description:
+      "We begin by examining how your business operates, where time is lost, and which everyday tasks create unnecessary complexity.",
+  },
+  {
+    number: "02",
+    title: "Identifying Opportunities",
+    description:
+      "We identify repetitive tasks, disconnected systems, and workflow bottlenecks to uncover meaningful improvements.",
+  },
+  {
+    number: "03",
+    title: "Building Smarter Solutions",
+    description:
+      "We design practical improvements using automation, integrations, dashboards, custom software, and AI where they make sense.",
+  },
+  {
+    number: "04",
+    title: "Improving the Way Business Works",
+    description:
+      "We help businesses implement better workflows and refine their processes as their needs evolve, with a focus on practical results.",
+  },
+];
+---
+
+<section class="px-4 py-12 md:px-8 md:py-16 lg:px-[61px] lg:py-[88px]">
+  <div class="mx-auto grid max-w-[1318px] gap-10 md:grid-cols-[0.72fr_1fr] md:gap-16 lg:gap-24">
+    <div>
+      <p
+        data-reveal
+        class="inline-flex rounded-full border border-line px-3 py-1 text-[10px] font-medium text-[#555b68]"
+      >
+        Our journey
+      </p>
+      <h2
+        data-reveal
+        style="--reveal-delay: 80ms;"
+        class="mt-3 max-w-[430px] text-[30px] leading-[1.2] font-medium tracking-[-0.025em] text-[#363944] uppercase md:text-[38px] lg:text-[42px]"
+      >
+        From business problems to
+        <span class="font-normal text-[#7b8190]">smarter solutions</span>
+      </h2>
+      <p
+        data-reveal
+        style="--reveal-delay: 150ms;"
+        class="mt-4 max-w-[390px] text-sm leading-6 font-light text-[#646b79] md:text-[15px] md:leading-7"
+      >
+        ADIBID helps businesses identify inefficiencies, simplify everyday
+        operations, and build practical digital solutions that make work
+        easier and more efficient.
+      </p>
+    </div>
+
+    <ol class="relative space-y-0 before:absolute before:top-3 before:bottom-7 before:left-[11px] before:w-px before:bg-[#0a9874]">
+      {steps.map((step, index) => (
+        <li
+          data-reveal
+          style={`--reveal-delay: ${index * 100}ms;`}
+          class="relative grid grid-cols-[24px_1fr] gap-4 pb-7 last:pb-0 md:gap-6 md:pb-9"
+        >
+          <span class="relative z-10 mt-0.5 grid size-[23px] place-items-center rounded-full border-[3px] border-[#252a30] bg-white">
+            <span class="size-2 rounded-full bg-white"></span>
+          </span>
+          <div class="pb-5 md:pb-7">
+            <span class="inline-flex rounded-full border border-[#e1e3e7] bg-[#f7f8f9] px-3 py-1 text-[10px] font-light text-[#6b7280]">
+              Phase {step.number}
+            </span>
+            <h3 class="mt-3 text-sm font-medium tracking-tight text-[#252830] md:text-base">
+              {step.title}
+            </h3>
+            <p class="mt-1.5 max-w-[500px] text-[11px] leading-5 font-light text-[#646b79] md:text-xs md:leading-5">
+              {step.description}
+            </p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

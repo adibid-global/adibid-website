@@ -1,0 +1,155 @@
+---
+import { ArrowLeft, ArrowRight } from "@lucide/astro";
+
+const disciplines = [
+  {
+    name: "Arron",
+    role: "Leadership & Strategy",
+    image: "/images/team/ceo.svg",
+    alt: "Arron, CEO of ADIBID",
+  },
+  {
+    name: "Imesha",
+    role: "Design & User Experience",
+    image: "/images/team/director-ux.svg",
+    alt: "Imesha, Director of User Experience",
+  },
+  {
+    name: "Chamal",
+    role: "Artificial Intelligence",
+    image: "/images/team/lead-ai-engineer.svg",
+    alt: "Chamal, Lead AI Engineer",
+  },
+  {
+    name: "Andrea Augustine",
+    role: "Consultant – Engineering & Operational Solutions",
+    image:
+      "/images/team/consultant%20%E2%80%93%20engineering%20&%20operational%20solutions.svg",
+    alt: "Engineering and operational solutions consultant profile",
+  },
+  {
+    name: "Dhananji Pallegedara",
+    role: "DRC",
+    image: "/images/team/drc.svg",
+    alt: "DRC profile image",
+  },
+];
+---
+
+<section class="bg-[#f5f6f8] px-4 py-12 md:px-8 md:py-16 lg:px-[61px] lg:py-[88px]">
+  <div class="mx-auto max-w-[1318px]">
+    <div class="grid gap-5 md:grid-cols-[1fr_0.65fr] md:items-end md:gap-12">
+      <div>
+        <p
+          data-reveal
+          class="text-[11px] font-medium tracking-[0.16em] text-[#858b98] uppercase"
+        >
+          Our people
+        </p>
+        <h2
+          data-reveal
+          style="--reveal-delay: 80ms;"
+          class="mt-2 text-[31px] leading-[1.2] font-medium tracking-[-0.035em] text-[#202228] md:text-[42px] lg:text-[48px]"
+        >
+          Different disciplines.
+          <span class="block font-normal text-[#7b8190]">One objective.</span>
+        </h2>
+      </div>
+      <p
+        data-reveal
+        style="--reveal-delay: 150ms;"
+        class="max-w-[450px] text-sm leading-6 font-light text-[#646b79] md:justify-self-end md:text-[15px] md:leading-7"
+      >
+        We bring together business thinking, research, and technology to
+        understand operational challenges and develop practical solutions that
+        help businesses work smarter.
+      </p>
+    </div>
+
+    <div data-slider class="mt-7 md:mt-9">
+      <div
+        data-track
+        role="region"
+        aria-label="ADIBID team members"
+        tabindex="0"
+        class="flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth [scrollbar-width:none] focus:outline-none [&::-webkit-scrollbar]:hidden md:gap-4"
+      >
+        {disciplines.map((person, index) => (
+          <article
+            data-reveal
+            style={`--reveal-delay: ${index * 80}ms;`}
+            class="group relative h-[300px] w-[78%] shrink-0 snap-start overflow-hidden rounded-[2px] bg-[#d5d7da] sm:w-[48%] lg:h-[400px] lg:w-[calc((100%-48px)/4)]"
+          >
+            <img
+              src={person.image}
+              alt={person.alt}
+              loading="lazy"
+              decoding="async"
+              class="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/5 to-transparent"></div>
+            <div class="absolute inset-x-0 bottom-0 p-4 text-white md:p-5">
+              <h3 class="text-lg leading-tight font-medium tracking-tight md:text-xl">
+                {person.name}
+              </h3>
+              {person.role && (
+                <p class="mt-1 text-[10px] leading-snug font-light text-white/80 md:text-xs">
+                  {person.role}
+                </p>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+      <div class="mt-5 flex gap-1.5">
+        <button
+          type="button"
+          data-prev
+          aria-label="Previous team members"
+          class="grid size-10 place-items-center rounded-[2px] bg-[#363944] text-white transition-colors hover:bg-ink cursor-pointer"
+        >
+          <ArrowLeft size={18} stroke-width={1.5} />
+        </button>
+        <button
+          type="button"
+          data-next
+          aria-label="Next team members"
+          class="grid size-10 place-items-center rounded-[2px] bg-[#363944] text-white transition-colors hover:bg-ink cursor-pointer"
+        >
+          <ArrowRight size={18} stroke-width={1.5} />
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-slider]").forEach((slider) => {
+    const track = slider.querySelector<HTMLElement>("[data-track]");
+    const prev = slider.querySelector<HTMLButtonElement>("[data-prev]");
+    const next = slider.querySelector<HTMLButtonElement>("[data-next]");
+    const firstCard = track?.firstElementChild;
+
+    if (!track || !prev || !next || !(firstCard instanceof HTMLElement)) return;
+
+    const getStep = () => {
+      const gap = Number.parseFloat(getComputedStyle(track).columnGap) || 0;
+      return firstCard.getBoundingClientRect().width + gap;
+    };
+
+    const scroll = (direction: -1 | 1) => {
+      const max = track.scrollWidth - track.clientWidth;
+      if (max <= 2) return;
+      if (direction === 1 && track.scrollLeft >= max - 2) {
+        track.scrollTo({ left: 0, behavior: "smooth" });
+      } else if (direction === -1 && track.scrollLeft <= 2) {
+        track.scrollTo({ left: max, behavior: "smooth" });
+      } else {
+        track.scrollBy({ left: direction * getStep(), behavior: "smooth" });
+      }
+    };
+
+    prev.addEventListener("click", () => scroll(-1));
+    next.addEventListener("click", () => scroll(1));
+  });
+</script>

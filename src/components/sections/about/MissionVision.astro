@@ -1,0 +1,46 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<div class:list={["grid gap-3 md:gap-4", className]}>
+  <article
+    data-reveal
+    class="flex min-h-[150px] flex-col justify-between rounded-[2px] bg-[#363944] p-5 text-white md:min-h-[185px] md:p-7"
+  >
+    <span
+      aria-hidden="true"
+      class="grid size-8 place-items-center rounded-full border-[4px] border-white/80"
+    >
+      <span class="size-2 rounded-full bg-white"></span>
+    </span>
+    <div class="mt-6">
+      <h3 class="text-base font-medium md:text-lg">Our Mission</h3>
+      <p class="mt-1.5 max-w-[440px] text-xs leading-5 font-light text-white/85 md:text-sm md:leading-6">
+        To help businesses simplify operations, connect systems, and improve productivity through practical digital solutions.
+      </p>
+    </div>
+  </article>
+
+  <article
+    data-reveal
+    style="--reveal-delay: 100ms;"
+    class="flex min-h-[130px] flex-col justify-between rounded-[2px] bg-[#f5f6f8] p-5 md:min-h-[155px] md:p-7"
+  >
+    <span
+      aria-hidden="true"
+      class="grid size-8 place-items-center rounded-full border border-[#d6d8dd] text-[#555b68]"
+    >
+      <span class="size-2 rounded-full border border-current"></span>
+    </span>
+    <div class="mt-5">
+      <h3 class="text-sm font-medium text-[#202228] md:text-base">Our Vision</h3>
+      <p class="mt-1 text-xs leading-5 font-light text-[#646b79] md:text-sm">
+        To help businesses operate more intelligently, adapt with confidence, and grow through purposeful technology.
+      </p>
+    </div>
+  </article>
+</div>
